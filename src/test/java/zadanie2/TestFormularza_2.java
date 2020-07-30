@@ -54,6 +54,6 @@ public class TestFormularza_2 {
     @After
     public void tearDown() throws Exception {
         //Zamknij przeglądarkę
-        //driver.quit();
+        driver.quit();
     }
 }
