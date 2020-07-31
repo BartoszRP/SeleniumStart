@@ -45,7 +45,7 @@ public class ZadanieDodatkowe2_alternatywa {
         Random random = new Random();
 
         //generuje z alfabetu losowe litery
-        String abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String abc = ("ABCDEFGHIJKLMNOPQRSTUVWXYZ"+"abcdefghijklmnoprstuvwxyz");
 
         String FirstName = String.valueOf(abc.charAt(random.nextInt(abc.length())));
         String LastName = String.valueOf(abc.charAt(random.nextInt(abc.length())));
@@ -59,56 +59,62 @@ public class ZadanieDodatkowe2_alternatywa {
         Date date = new Date();
         String BirthG = dateFormat.format(date).toString();
 
-
         Firstname.sendKeys(FirstName);
         Lastname.sendKeys(LastName);
         Email.sendKeys(UserEmail);
         Password.sendKeys(PasswordG);
         Birth.sendKeys(BirthG);
-
         Offers.click();
         Newsletter.click();
         Newsletter.submit();
 
-        //driver.get("https://prod-kurs.coderslab.pl/index.php?controller=address");
+        //proba klikniecia w przycisk ADDRESSES - nie wychodzi
 
-        WebElement User = driver.findElement(By.xpath("/html/body/main/header/nav/div/div/div[1]/div[2]/div[2]/div/a[2]"));
-        WebElement AddFirstAddress = driver.findElement(By.xpath("/html/body/main/section/div/div/section/section/div/div/a[2]"));
-        User.click();
-        AddFirstAddress.click();
+       // WebElement User = driver.findElement(By.xpath("/html/body/main/header/nav/div/div/div[1]/div[2]/div[2]/div/a[2]"));
+       // WebElement AddFirstAddress = driver.findElement(By.xpath("/html/body/main/section/div/div/section/section/div/div/a[2]"));
+       // User.click();
+       // AddFirstAddress.click();
 
+        driver.get("https://prod-kurs.coderslab.pl/index.php?controller=address");
 
-        //  WebElement Alias = driver.findElement(By.name("alias"));
-        //  WebElement Company = driver.findElement(By.name("company"));
-        //  WebElement Adres = driver.findElement(By.name("adress1"));
-        //  WebElement Postcode = driver.findElement(By.name("postcode"));
-        //  WebElement City = driver.findElement(By.name("city"));
+        WebElement Alias = driver.findElement(By.name("alias"));
+        WebElement Company = driver.findElement(By.name("company"));
+        WebElement VatNumber = driver.findElement(By.name("vat_number"));
+        WebElement Address = driver.findElement(By.name("address1"));
+        WebElement PostCode = driver.findElement(By.name("postcode"));
+        WebElement City = driver.findElement(By.name("city"));
+        WebElement Phone = driver.findElement(By.name("phone"));
 
-        //  String[] TAlias = {"ted", "maks", "guci"};
-        //  String[] TCompany = {"Micro", "Makro", "Takro"};
-        //  String[] TAdres = {"ul.x", "ul.y", "ul.z"};
-        //  String[] TPostcode = {"345", "346", "347"};
-        //  String[] TCity = {"Gdynia", "Krynica", "Krakow"};
+        //WebElement Country = driver.findElement(By.id("id_country")); //nie udalo sie jeszcze
 
-        //  int randomAlias = random.nextInt(3);
-        //  int randomCompany = random.nextInt(3);
-        //  int randomAdres = random.nextInt(3);
-        //  int randomPostcode = random.nextInt(3);
-        //  int randomCity = random.nextInt(3);
+        String AliasG = String.valueOf(abc.charAt(random.nextInt(abc.length())));
+        String CompanyG = String.valueOf(abc.charAt(random.nextInt(abc.length())));
+        String VatNumberG =  "Vat" + random.nextInt();
+        String AddressG = "Address" + String.valueOf(abc.charAt(random.nextInt(abc.length())));
 
+        //String PosCodeG = String.valueOf(random.nextInt()); //zly format
+        int numer1 = random.nextInt(10)+10;
+        int numer2 = random.nextInt(10)+10;
+        int setNumer3= random.nextInt(899)+100;
+        String PosCodeG = numer1+numer2  + "-" + setNumer3;
 
-        //  Alias.sendKeys(TAlias[randomAlias]);
-        //  Company.sendKeys(TCompany[randomCompany]);
-        //  Adres.sendKeys(TAdres[randomAdres]);
-        //  Postcode.sendKeys(TPostcode[randomPostcode]);
-        //  City.sendKeys(TCity[randomCity]);
+        String CityG = "City" + String.valueOf(abc.charAt(random.nextInt(abc.length())));
+        String PhoneG = "00" + String.valueOf(random.nextInt());
 
-
+        Alias.sendKeys(AliasG);
+        Company.sendKeys(CompanyG);
+        VatNumber.sendKeys(VatNumberG);
+        Address.sendKeys(AddressG);
+        PostCode.sendKeys(PosCodeG);
+        City.sendKeys(CityG);
+        Phone.sendKeys(PhoneG);
+       // Country.isSelected(); //nie udalo sie jeszcze
+        Phone.submit();
     }
 
     @After
     public void tearDown() throws Exception {
         // Zamknij przeglądarkę
-        //driver.quit();
+        driver.quit();
     }
 }

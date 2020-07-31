@@ -22,10 +22,11 @@ public class TestFormularza_2 {
         // Przejdź do Google
         driver.get("https://katalon-test.s3.amazonaws.com/demo-aut/dist/html/form.html");
     }
-
+// wszystko lepiej ulozone w tej wersji
     @Test
     public void testGoogleSearch() {
         // Znajdź element wprowadzania tekstu na podstawie jego id/xpath
+
         WebElement FirstName = driver.findElement(By.id("first-name"));
         WebElement LastName = driver.findElement(By.id("last-name"));
         WebElement Gender = driver.findElement(By.xpath("//*[@id=\"infoForm\"]/div[3]/div/div/label[1]/input"));
