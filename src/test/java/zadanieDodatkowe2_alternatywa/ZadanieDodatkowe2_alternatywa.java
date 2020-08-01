@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 
 import java.text.DateFormat;
@@ -45,7 +46,7 @@ public class ZadanieDodatkowe2_alternatywa {
         Random random = new Random();
 
         //generuje z alfabetu losowe litery
-        String abc = ("ABCDEFGHIJKLMNOPQRSTUVWXYZ"+"abcdefghijklmnoprstuvwxyz");
+        String abc = ("ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "abcdefghijklmnoprstuvwxyz");
 
         String FirstName = String.valueOf(abc.charAt(random.nextInt(abc.length())));
         String LastName = String.valueOf(abc.charAt(random.nextInt(abc.length())));
@@ -70,10 +71,10 @@ public class ZadanieDodatkowe2_alternatywa {
 
         //proba klikniecia w przycisk ADDRESSES - nie wychodzi
 
-       // WebElement User = driver.findElement(By.xpath("/html/body/main/header/nav/div/div/div[1]/div[2]/div[2]/div/a[2]"));
-       // WebElement AddFirstAddress = driver.findElement(By.xpath("/html/body/main/section/div/div/section/section/div/div/a[2]"));
-       // User.click();
-       // AddFirstAddress.click();
+        // WebElement User = driver.findElement(By.xpath("/html/body/main/header/nav/div/div/div[1]/div[2]/div[2]/div/a[2]"));
+        // WebElement AddFirstAddress = driver.findElement(By.xpath("/html/body/main/section/div/div/section/section/div/div/a[2]"));
+        // User.click();
+        // AddFirstAddress.click();
 
         driver.get("https://prod-kurs.coderslab.pl/index.php?controller=address");
 
@@ -83,22 +84,24 @@ public class ZadanieDodatkowe2_alternatywa {
         WebElement Address = driver.findElement(By.name("address1"));
         WebElement PostCode = driver.findElement(By.name("postcode"));
         WebElement City = driver.findElement(By.name("city"));
+        WebElement Country = driver.findElement(By.name("id_country"));
         WebElement Phone = driver.findElement(By.name("phone"));
 
         //WebElement Country = driver.findElement(By.id("id_country")); //nie udalo sie jeszcze
 
         String AliasG = String.valueOf(abc.charAt(random.nextInt(abc.length())));
         String CompanyG = String.valueOf(abc.charAt(random.nextInt(abc.length())));
-        String VatNumberG =  "Vat" + random.nextInt();
+        String VatNumberG = "Vat" + random.nextInt();
         String AddressG = "Address" + String.valueOf(abc.charAt(random.nextInt(abc.length())));
 
         //String PosCodeG = String.valueOf(random.nextInt()); //zly format
-        int numer1 = random.nextInt(10)+10;
-        int numer2 = random.nextInt(10)+10;
-        int setNumer3= random.nextInt(899)+100;
-        String PosCodeG = numer1+numer2  + "-" + setNumer3;
+        int numer1 = random.nextInt(10) + 10;
+        int numer2 = random.nextInt(10) + 10;
+        int setNumer3 = random.nextInt(899) + 100;
+        String PosCodeG = numer1 + numer2 + "-" + setNumer3;
 
         String CityG = "City" + String.valueOf(abc.charAt(random.nextInt(abc.length())));
+        Select CountrySelect = new Select(Country);
         String PhoneG = "00" + String.valueOf(random.nextInt());
 
         Alias.sendKeys(AliasG);
@@ -107,8 +110,9 @@ public class ZadanieDodatkowe2_alternatywa {
         Address.sendKeys(AddressG);
         PostCode.sendKeys(PosCodeG);
         City.sendKeys(CityG);
+        CountrySelect.selectByValue("17");
         Phone.sendKeys(PhoneG);
-       // Country.isSelected(); //nie udalo sie jeszcze
+        // Country.isSelected(); //nie udalo sie jeszcze
         Phone.submit();
     }
 

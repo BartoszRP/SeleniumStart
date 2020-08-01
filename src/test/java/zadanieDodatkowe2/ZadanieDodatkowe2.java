@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.Random;
 
@@ -39,7 +40,7 @@ public class ZadanieDodatkowe2 {
         //przygotowanie tablic z informacjami potrzebnymi do wypelnienia formularza
         String[] TFirstName = {"Marek", "Karol", "Darek"};
         String[] TLastName = {"Kowalski", "Kat", "Mak"};
-        String[] TEmail = {"Kowalsk1345@gmmm.com", "Kat154@gmmm.com", "Mak1534@gmmm.com", "Kowalski1534@gmmm.com", "Kat1534@gmmm.com", "Mak543@gmmm.com"};
+        String[] TEmail = {"Kowalsk545@gmmm.com", "Kat7548@gmmm.com", "Mak782278@gmmm.com", "Kowalski82275@gmmm.com", "Kat78228@gmmm.com", "Mak4512@gmmm.com"};
         String[] TPassword = {"123g", "gg123", "tre333"};
         String[] TBirth = {"12/05/1980", "15/08/1983", "21/03/1981"};
 
@@ -80,6 +81,12 @@ public class ZadanieDodatkowe2 {
         WebElement Adres = driver.findElement(By.name("address1"));
         WebElement Postcode = driver.findElement(By.name("postcode"));
         WebElement City = driver.findElement(By.name("city"));
+        WebElement Country = driver.findElement(By.name("id_country"));
+        //pomoc do listy wybieralnej
+        //  WebElement roleSelectElement = driver.findElement(By.id("role"));
+        //  Select roleSelect = new Select(roleSelectElement);
+        //  roleSelect.selectByVisibleText("QA");
+
         WebElement Phone = driver.findElement(By.name("phone"));
 
         String[] TAlias = {"ted", "maks", "guci"};
@@ -89,6 +96,7 @@ public class ZadanieDodatkowe2 {
         String[] TCity = {"Gdynia", "Krynica", "Krakow"};
         String[] TPhone = {"600-501-502", "600-660-660", "600-758-585"};
 
+
         int randomAlias = random.nextInt(3);
         int randomCompany = random.nextInt(3);
         int randomAdres = random.nextInt(3);
@@ -96,11 +104,14 @@ public class ZadanieDodatkowe2 {
         int randomCity = random.nextInt(3);
         int randomPhone = random.nextInt(3);
 
+        Select CountrySelect = new Select(Country);
+
         Alias.sendKeys(TAlias[randomAlias]);
         Company.sendKeys(TCompany[randomCompany]);
         Adres.sendKeys(TAdres[randomAdres]);
         Postcode.sendKeys(TPostcode[randomPostcode]);
         City.sendKeys(TCity[randomCity]);
+        CountrySelect.selectByValue("17");
         Phone.sendKeys(TPhone[randomPhone]);
         Phone.submit();
     }
@@ -108,6 +119,6 @@ public class ZadanieDodatkowe2 {
     @After
     public void tearDown() throws Exception {
         // Zamknij przeglądarkę
-        //driver.quit();
+        driver.quit();
     }
 }
