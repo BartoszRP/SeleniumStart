@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.util.Random;
 
-public class ZadanieDodatkowe2 {
+public class ZadanieDodatkowe2_Funkcje {
     private WebDriver driver;
 
     @Before
@@ -29,15 +29,54 @@ public class ZadanieDodatkowe2 {
 
     @Test
     public void testGoogleSearch() {
+//Sprawdza czy element jest aktywny - jesli nie zwaraca false
+        //   WebElement test = driver.findElement(By.name("firstname"));
+        //   if(test.isEnabled()) {
+        //   search.sendKeys("Selenium");
+        //  search.submit();
+        //  }else 	{
+        //    Assert.fail();
+        // }
+
 
         //wyszukiwanie elementow na stronie
         WebElement Firstname = driver.findElement(By.name("firstname"));
+        if (Firstname.isEnabled()) {
+        } else {
+            Assert.fail();
+        }
+
         WebElement Lastname = driver.findElement(By.name("lastname"));
+        if (Lastname.isEnabled()) {
+        } else {
+            Assert.fail();
+
+        }
         WebElement Email = driver.findElement(By.name("email"));
+        if (Email.isEnabled()) {
+        } else {
+            Assert.fail();
+        }
         WebElement Password = driver.findElement(By.name("password"));
+        if (Password.isEnabled()) {
+        } else {
+            Assert.fail();
+        }
         WebElement Birth = driver.findElement(By.name("birthday"));
+        if (Birth.isEnabled()) {
+        } else {
+            Assert.fail();
+        }
         WebElement Offers = driver.findElement(By.name("optin"));
+//        if (Offers.isSelected()) {
+//        } else {
+//            Assert.fail();
+//        }
         WebElement Newsletter = driver.findElement(By.name("newsletter"));
+//        if (Newsletter.isSelected()) {
+//        } else {
+ //           Assert.fail();
+ //       }
 
         //przygotowanie tablic z informacjami potrzebnymi do wypelnienia formularza
         String[] TFirstName = {"Marek", "Karol", "Darek"};
