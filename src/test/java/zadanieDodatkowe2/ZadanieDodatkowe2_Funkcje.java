@@ -63,7 +63,7 @@ public class ZadanieDodatkowe2_Funkcje {
             Assert.fail();
         }
         WebElement Birth = driver.findElement(By.name("birthday"));
-        if (Birth.isEnabled()) {
+        if (Birth.isEnabled()) { // trzeba przerzucic do sendkeys line 95/96 - powinien znalezc
         } else {
             Assert.fail();
         }
