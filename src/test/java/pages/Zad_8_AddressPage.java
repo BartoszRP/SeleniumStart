@@ -5,10 +5,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class AddressPage {
+public class Zad_8_AddressPage {
     private WebDriver driver;
 
-    public AddressPage(WebDriver driver) {
+    public Zad_8_AddressPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }

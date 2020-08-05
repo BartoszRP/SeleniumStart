@@ -1,13 +1,16 @@
 package stepdefinitions;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.Random;
 
@@ -18,57 +21,88 @@ public class CreateAnAccountSteps {
     public void anOpenBrowserWithQloappsCoderslabPl() {
         System.setProperty("webdriver.chrome.driver",
                 "src/main/resources/chromedriver");
-        // Uruchom nowy egzemplarz przeglądarki Chrome
         driver = new ChromeDriver();
-        // Zmaksymalizuj okno przeglądarki
         driver.manage().window().maximize();
-        // Przejdź do strony
         driver.get("https://qloapps.coderslab.pl/en/login?back=my-account");
-
     }
-
 
     @When("^User gives (.*) and click Create an account button$")
-    public void userGivesEmailAndClickCreateAnAccountButton(String keyword) {
+    public void userGivesEmailAndClickCreateAnAccountButton(String email) {
         WebElement element = driver.findElement(By.id("email_create"));
-        // Wyczyść tekst zapisany w elemencie
         element.clear();
-        // Wpisz informacje do wyszukania
-        element.sendKeys(keyword);
-        // Prześlij formularz
+        element.sendKeys(email);
         element.submit();
-        //Assert.fail(); - do srawdzenia ze test failed
-    }
 
-    @Then("^User fills up the form$")
-    public void userFillsUpTheForm() {
-        //tu bedzie wypisywanie po kolei co
-//        WebElement Firstname = driver.findElement(By.id("customer_firstname"));
-//        Firstname.clear();
-        WebElement Lastname = driver.findElement(By.xpath("//*[@id=\"customer_firstname\"]"));
-        // WebElement Email = driver.findElement(By.name("email"));
-        WebElement Password = driver.findElement(By.id("passwd"));
 
-//       String[] TFirstName = {"Marek", "Karol", "Darek"};
-        String[] TLastName = {"Kowalski", "Kat", "Mak"};
-        // String[] TEmail = {"Kowalsk545@gmmm.com", "Kat7548@gmmm.com", "Mak782278@gmmm.com", "Kowalski82275@gmmm.com", "Kat78228@gmmm.com", "Mak4512@gmmm.com"};
-        String[] TPassword = {"123g4", "gg123", "tre333"};
-
-        Random random = new Random();
-//        int randomFirstName = random.nextInt(3);
-        int randomLastName = random.nextInt(3);
-        // int randomEmail = random.nextInt(6);
-        int randomPassword = random.nextInt(3);
-
-//       Firstname.sendKeys(TFirstName[randomFirstName]);
-        Lastname.sendKeys(TLastName[randomLastName]);
-        //   Email.sendKeys(TEmail[randomEmail]);
-        Password.sendKeys(TPassword[randomPassword]);
     }
 
 
-    @And("^close the browser$")
-    public void closeTheBrowser() {
-        //driver.quit();
+    @And("^User pickup his gender$")
+    public void userPickupHisGender() {
+        try {
+            Thread.sleep(2000); //usupiamy na 2sec
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        WebElement Gender = driver.findElement(By.id("id_gender1"));
+        Gender.click();
+
+//        Select select4 = new Select(driver.findElement(By.id("id_gender")));
+//        select4.selectByValue("1"); // czemu nie dziala w tej metodzie?
+
+
     }
+
+    @And("^User input \"([^\"]*)\"$")
+    public void userInput(String firstName) {
+        WebElement element = driver.findElement(By.id("customer_firstname"));
+        element.clear();
+        element.sendKeys(firstName);
+    }
+
+    @And("^User gives \"([^\"]*)\"$")
+    public void userGives(String lastName) {
+        WebElement element = driver.findElement(By.id("customer_lastname"));
+        element.clear();
+        element.sendKeys(lastName);
+    }
+
+    @And("^User to enter \"([^\"]*)\"$")
+    public void userToEnter(String password) {
+        WebElement element = driver.findElement(By.id("passwd"));
+        element.clear();
+        element.sendKeys(password);
+
+    }
+
+    @And("^User sets Birth$")
+    public void userSetsBirth() {
+        Select select1 = new Select(driver.findElement(By.id("days")));
+        select1.selectByIndex(3);
+        Select select2 = new Select(driver.findElement(By.id("months")));
+        select2.selectByIndex(3);
+        Select select3 = new Select(driver.findElement(By.id("years")));
+        select3.selectByValue("2000");
+    }
+
+    @And("^User signs for a newsletter$")
+    public void userSignsForANewsletter() {
+        WebElement Newsletter = driver.findElement(By.name("newsletter"));
+        Newsletter.click();
+    }
+
+    @And("^User signs for special offers$")
+    public void userSignsForSpecialOffers() {
+        WebElement Offers = driver.findElement(By.name("optin"));
+        Offers.click();
+    }
+
+
+    @Then("^User registered$")
+    public void userRegistered() {
+        WebElement element = driver.findElement(By.id("submitAccount"));
+        element.click();
+    }
+
 }

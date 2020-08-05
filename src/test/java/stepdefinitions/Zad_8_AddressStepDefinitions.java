@@ -1,6 +1,5 @@
 package stepdefinitions;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -8,15 +7,15 @@ import cucumber.api.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import pages.AddressPage;
+import pages.Zad_8_AddressPage;
 import pages.LoginPage;
 
 import java.util.concurrent.TimeUnit;
 
-public class AddressStepDefinitions {
+public class Zad_8_AddressStepDefinitions {
 
     private WebDriver driver;
-    private AddressPage addressPage;
+    private Zad_8_AddressPage zad8AddressPage;
 
     @Given("^User is logged in to CodersLab_shop$")
     public void userIsLoggedInToCodersLab_shop() {
@@ -38,28 +37,28 @@ public class AddressStepDefinitions {
 
     @And("^User enters \"([^\"]*)\"$")
     public void userEntersAlias(String alias) {
-        addressPage = new AddressPage(driver);
-        addressPage.setAlias(alias);
+        zad8AddressPage = new Zad_8_AddressPage(driver);
+        zad8AddressPage.setAlias(alias);
     }
 
     @And("^User enters 1 \"([^\"]*)\"$")
    public void userEntersCompany(String company) {
-        addressPage.setCompany(company);
+        zad8AddressPage.setCompany(company);
    }
 
     @And("^User enters 2 \"([^\"]*)\"$")
     public void userEntersAddress(String address) {
-        addressPage.setAddress(address);
+        zad8AddressPage.setAddress(address);
     }
 
     @And("^User enters 3 \"([^\"]*)\"$")
     public void userEntersCity(String city) {
-        addressPage.setCity(city);
+        zad8AddressPage.setCity(city);
     }
 
     @And("^User enters 4 \"([^\"]*)\"$")
     public void userEntersZip(String zip) {
-        addressPage.setZip(zip);
+        zad8AddressPage.setZip(zip);
     }
 
     @And("^User enters (\\d+) Country$")
@@ -68,7 +67,7 @@ public class AddressStepDefinitions {
 
     @And("^User enters 6 \"([^\"]*)\"$")
     public void userEntersPhone(String phoneNumber) {
-        addressPage.setPhone(phoneNumber);
+        zad8AddressPage.setPhone(phoneNumber);
     }
 
 //        public void userEnters(String alias, String company, String address, String city, String zip, String phoneNumber) throws Throwable {
@@ -76,13 +75,13 @@ public class AddressStepDefinitions {
 
     @And("^User saves Address information$")
     public void userSavesAddressInformation() {
-       addressPage.submitUserInfo();
+       zad8AddressPage.submitUserInfo();
 
     }
 
     @Then("^User sees info \"([^\"]*)\"$")
     public void userSeesInfo(String expectedText) throws Throwable {
-        String actualText = addressPage.getUpdateInformation();
+        String actualText = zad8AddressPage.getUpdateInformation();
         Assert.assertEquals(expectedText, actualText);
 
     }
